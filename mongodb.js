@@ -1,5 +1,4 @@
-const mongodb = require("mongodb");
-const MongoClient = mongodb.MongoClient;
+const { MongoClient, ObjectID } = require("mongodb");
 
 const connectionURL = "mongodb://127.0.0.1:27017";
 const databaseName = "task-manager";
@@ -10,53 +9,42 @@ MongoClient.connect(
   (error, client) => {
     if (error) return console.log("Unable to connect to the database");
     const db = client.db(databaseName);
-    // db.collection("users").insertOne(
+    // db.collection("users").findOne(
     //   {
-    //     name: "Abhishek Prajapat",
-    //     age: 24,
+    //     _id: new ObjectID("620febc47f0cee2f75c77090"),
     //   },
-    //   (error, result) => {
-    //     if (error) {
-    //       return console.log("Unable to insert user");
-    //     }
-    //     console.log(result);
+    //   (error, user) => {
+    //     if (error) return console.log("Unable to fetch user");
+    //     console.log(task);
     //   }
     // );
-    // db.collection("users").insertMany(
-    //   [
-    //     {
-    //       name: "Anurag Prajapat",
-    //       age: 27,
-    //     },
-    //     {
-    //       name: "Ankita Prajapat",
-    //       age: 32,
-    //     },
-    //   ],
-    //   (error, result) => {
-    //     if (error) {
-    //       return console.log("Unable to insert many");
-    //     }
+    // db.collection("tasks")
+    //   .find({
+    //     completed: false,
+    //   })
+    //   .toArray((error, result) => {
     //     console.log(result);
+    //   });
+    // db.collection("users").findOne(
+    //   { _id: new ObjectID("620f4485abb90d8048b25204") },
+    //   (error, user) => {
+    //     if (error) return console.log("Unable to fetch user");
+    //     console.log(user);
     //   }
     // );
-    db.collection("tasks").insertMany(
-      [
-        {
-          description: "Good string",
-          completed: true,
-        },
-        {
-          description: "Bad String",
-          completed: false,
-        },
-      ],
-      (error, result) => {
-        if (error) {
-          return console.log("Unable to insert many!");
-        }
-        console.log(result);
-      }
-    );
+    // db.collection("users")
+    //   .find({
+    //     age: 24,
+    //   })
+    //   .toArray((error, users) => {
+    //     console.log(users);
+    //   });
+    // db.collection("users")
+    //   .find({
+    //     age: 24,
+    //   })
+    //   .count((error, count) => {
+    //     console.log(count);
+    //   });
   }
 );
