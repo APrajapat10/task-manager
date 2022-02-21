@@ -9,42 +9,52 @@ MongoClient.connect(
   (error, client) => {
     if (error) return console.log("Unable to connect to the database");
     const db = client.db(databaseName);
-    // db.collection("users").findOne(
-    //   {
-    //     _id: new ObjectID("620febc47f0cee2f75c77090"),
-    //   },
-    //   (error, user) => {
-    //     if (error) return console.log("Unable to fetch user");
-    //     console.log(task);
-    //   }
-    // );
-    // db.collection("tasks")
-    //   .find({
-    //     completed: false,
-    //   })
-    //   .toArray((error, result) => {
+
+    // db.collection("users")
+    //   .updateOne(
+    //     {
+    //       _id: new ObjectID("620febb3960bd7bc48d82720"),
+    //     },
+    //     {
+    //       $inc: {
+    //         age: 1,
+    //       },
+    //     }
+    //   )
+    //   .then((result) => {
     //     console.log(result);
-    //   });
-    // db.collection("users").findOne(
-    //   { _id: new ObjectID("620f4485abb90d8048b25204") },
-    //   (error, user) => {
-    //     if (error) return console.log("Unable to fetch user");
-    //     console.log(user);
-    //   }
-    // );
-    // db.collection("users")
-    //   .find({
-    //     age: 24,
     //   })
-    //   .toArray((error, users) => {
-    //     console.log(users);
+    //   .catch((error) => {
+    //     console.log(error);
     //   });
+
     // db.collection("users")
-    //   .find({
-    //     age: 24,
+    //   .updateMany(
+    //     {
+    //       age: 26,
+    //     },
+    //     {
+    //       $set: {
+    //         age: 0,
+    //       },
+    //     }
+    //   )
+    //   .then((result) => {
+    //     console.log(result);
     //   })
-    //   .count((error, count) => {
-    //     console.log(count);
+    //   .catch((error) => {
+    //     console.log(error);
     //   });
+
+    db.collection("users")
+      .deleteMany({
+        age: 24,
+      })
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 );
